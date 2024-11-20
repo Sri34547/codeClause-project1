@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Quiz Game</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: url('https://via.placeholder.com/1600x900') no-repeat center center fixed; 
+            background-size: cover; 
+            color: #fff;
+        }
+        .container {
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 2rem; 
+            background-color: rgba(0, 0, 0, 0.8); 
+            border-radius: 10px; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+        h1 {
+            font-size: 2.5rem; 
+            text-align: center; 
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+        }
+        .question {
+            margin-bottom: 1.5rem;
+        }
+        .question h2 {
+            font-size: 1.5rem; 
+            margin-bottom: 0.5rem;
+        }
+        label {
+            display: block; 
+            margin: 0.5rem 0;
+        }
+        input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+        button {
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            padding: 0.75rem 1.5rem; 
+            border-radius: 0.5rem; 
+            cursor: pointer; 
+            font-size: 1rem;
+            display: block;
+            margin: 1rem auto;
+        }
+        button:hover {
+            background-color: #3E8E41;
+        }
+        .score {
+            margin-top: 2rem; 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Online Quiz Game</h1>
+        <form id="quiz">
+            <div class="question">
+                <h2>Question 1</h2>
+                <p>What is the capital of France?</p>
+                <label><input type="radio" name="q1" value="a"> a) Paris </label>
+                <label><input type="radio" name="q1" value="b"> b) Italy </label>
+                <label><input type="radio" name="q1" value="c"> c) UK </label>
+                <label><input type="radio" name="q1" value="d"> d) USA </label>
+            </div>
+            <div class="question">
+                <h2>Question 2</h2>
+                <p>Which animal is known as the 'Ship of the Desert'?</p>
+                <label><input type="radio" name="q2" value="a"> a) Lion </label>
+                <label><input type="radio" name="q2" value="b"> b) Camel </label>
+                <label><input type="radio" name="q2" value="c"> c) Tiger </label>
+                <label><input type="radio" name="q2" value="d"> d) Dog </label>
+            </div>
+            <div class="question">
+                <h2>Question 3</h2>
+                <p>What is the smallest country in the world?</p>
+                <label><input type="radio" name="q3" value="a"> a) France </label>
+                <label><input type="radio" name="q3" value="b"> b) Spain </label>
+                <label><input type="radio" name="q3" value="c"> c) India </label>
+                <label><input type="radio" name="q3" value="d"> d) Vatican </label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div class="score">Your score: <span id="score">0</span></div>
+    </div>
+    <script>
+        const quizForm = document.getElementById('quiz');
+        const scoreDisplay = document.getElementById('score');
+        const questions = [
+            { questionNumber: 1, correctAnswer: 'a' }, // Correct answer: Paris
+            { questionNumber: 2, correctAnswer: 'b' }, // Correct answer: Camel
+            { questionNumber: 3, correctAnswer: 'd' }  // Correct answer: Vatican
+        ];
+        
+        quizForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            let userScore = 0;
+            questions.forEach(question => {
+                const selectedAnswer = quizForm[`q${question.questionNumber}`].value;
+                if (selectedAnswer === question.correctAnswer) {
+                    userScore++;
+                }
+            });
+            scoreDisplay.textContent = userScore;
+        });
+    </script>
+</body>
+</html>
